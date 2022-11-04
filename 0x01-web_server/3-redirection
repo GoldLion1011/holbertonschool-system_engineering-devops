@@ -6,5 +6,5 @@ sudo apt-get install -y nginx
 sudo echo 'Hello World' | sudo tee /var/www/html/index.html
 replace="^\tlocation / {"
 redir="\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n\tlocation / {"
-sudo sed -i "s|$replace|$redir|1" /etc/nginx/sites-available/default
+sudo sed -i "s|$replace|$redir|" /etc/nginx/sites-available/default
 sudo service nginx restart
