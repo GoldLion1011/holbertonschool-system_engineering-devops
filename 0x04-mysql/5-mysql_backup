@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Script that generates a MySQL dump and creates a compressed archive
+
