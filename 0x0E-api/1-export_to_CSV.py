@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-""" Returns information about and employee's TODO list progress """
+""" Returns information about and employee's todo list progress """
 import csv
+import json
 import requests
 import sys
 
@@ -9,7 +10,7 @@ def get_u_name(url, user_id):
     """ Returns user name/employee """
     response = requests.get('{}users/{}'.format(url, user_id))
     u_dict = response.json()
-    return u_dict['name']
+    return u_dict['username']
 
 
 def get_todos(url, user_id):

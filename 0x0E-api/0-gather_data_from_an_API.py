@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Returns information about and employee's todo list progress """
+import json
 import requests
 import sys
 
