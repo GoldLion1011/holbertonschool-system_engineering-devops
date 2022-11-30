@@ -1,16 +1,46 @@
 #!/usr/bin/python3
-""" Returns information about and employee's TODO list progress """
+""" Returns information about and employee's todo list progress """
 import json
 import requests
 import sys
 
 
+def get_u_name(url, user_id):
+    """ Returns user name/employee """
+    response = requests.get('{}users/{}'.format(url, user_id))
+    u_dict = response.json()
+    return u_dict['name']
+
+
+def get_todos(url, user_id):
+    """ Returns user's todo list progress """
+    response = requests.get('{}users/{}/todo_list'.format(url, user_id))
+    return response.json()
+
+
+def get_completed(todo_list):
+    """ Returns user's completed items """
+    done_str = ""
+    done_list = []
+    count = 0
+    for todo in todo_list:
+        if todo['completed'] is True:
+            count += 1
+            done_list.append('\t {}'.format(todo['title']))
+    done_str = '\n'.join(done_list)
+    return count, done_str
+
+
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + '/users/{}'.format(sys.argv[1])).json()
-    todos = requests.get(url + "todos", params={'userId': sys.argv[1]}).json()
+    user_id = sys.argv[1]
 
-    completed = [t.get('title') for t in todos if t.get('completed') is True]
-    print('Employee {} is done with tasks: {}/{}):'.format(user.get('name'),
-          len(completed), len(todos)))
-    [print('\t {}'.format(c)) for c in completed]
+    u_name = get_u_name(url, user_id)
+    todo_list = get_todos(url, user_id)
+    total = len(todo_list)
+    count, done_str = get_completed(todo_list)
+
+    print(
+        'Employee {} is done with tasks:({}/{}):'.format(u_name, count, total))
+    if count > 0:
+        print(done_str)
