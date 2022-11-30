@@ -13,7 +13,7 @@ def get_u_name(url, user_id):
 
 def get_todos(url, user_id):
     """ Returns user's todo list progress """
-    response = requests.get('{}users/{}/todo_list'.format(url, user_id))
+    response = requests.get('{}users/{}/todos'.format(url, user_id))
     return response.json()
 
 
@@ -31,12 +31,13 @@ def get_completed(todo_list):
 
 
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
     user_id = sys.argv[1]
+    url = "https://jsonplaceholder.typicode.com/"
 
     u_name = get_u_name(url, user_id)
     todo_list = get_todos(url, user_id)
     total = len(todo_list)
+
     count, done_str = get_completed(todo_list)
 
     print(
