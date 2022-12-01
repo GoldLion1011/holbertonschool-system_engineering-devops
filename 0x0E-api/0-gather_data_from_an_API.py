@@ -9,7 +9,7 @@ def get_u_name(url, user_id):
     """ Returns user name/employee """
     response = requests.get('{}users/{}'.format(url, user_id))
     u_dict = response.json()
-    return u_dict['username']
+    return u_dict['name']
 
 
 def get_todos(url, user_id):
@@ -42,6 +42,6 @@ if __name__ == "__main__":
     count, done_str = get_completed(todo_list)
 
     print(
-        'Employee {} is done with tasks:({}/{}):'.format(u_name, count, total))
+        'Employee {} is done with tasks({}/{}):'.format(u_name, count, total))
     if count > 0:
         print(done_str)
