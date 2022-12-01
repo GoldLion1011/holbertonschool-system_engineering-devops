@@ -25,7 +25,7 @@ if __name__ == "__main__":
     u_name = get_u_name(url, user_id)
     todo_list = get_todos(url, user_id)
 
-    with open('{}.json'.format(user_id), 'w', encoding='UTF') as f:
+    with open('{}.json'.format(user_id), 'w', encoding='UTF8') as f:
         todo_dict = {}
         todo_dict[sys.argv[1]] = []
         for todo in todo_list:

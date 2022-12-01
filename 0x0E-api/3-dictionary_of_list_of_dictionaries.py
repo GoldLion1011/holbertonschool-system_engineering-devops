@@ -7,14 +7,14 @@ import sys
 
 def get_u_name(url, user_id):
     """ Returns user name/employee """
-    response = requests.get('{}users/{}'.format(url, user_id), verify=False)
+    response = requests.get('{}users'.format(url, user_id), verify=False)
     u_dict = response.json()
+    #print(u_dict['username'])
     return u_dict['username']
-
 
 def get_done_list(url):
     """ Returns complete todo list """
-    response = requests.get('{}todos/{}'.format(url), verify=False)
+    response = requests.get('{}todos'.format(url), verify=False)
     return response.json()
 
 
