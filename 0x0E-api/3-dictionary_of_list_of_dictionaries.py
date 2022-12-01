@@ -24,7 +24,7 @@ if __name__ == "__main__":
     todo_dict = {}
     todo_list = get_done_list(url)
 
-    with open('todo_all_employees.json', 'w') as f:
+    with open('todo_all_employees.json', 'w', encoding='UTF8') as f:
         u_name = None
         for task in todo_list:
             user_id = str(task['userId'])
